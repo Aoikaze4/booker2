@@ -1,5 +1,4 @@
-<div class="row">
-  <div class="col-md-3">
+<p id="notice"></p>
     <h2>User Info</h2>
     <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %>
     <table class="table">
@@ -32,5 +31,3 @@
       <%= f.text_area :body %>
       <%= f.submit 'Create Book', method: :create, class:"btn btn-success" %>
     <% end %>
-  </div>
-</div>
