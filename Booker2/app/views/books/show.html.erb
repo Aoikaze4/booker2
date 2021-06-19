@@ -1,8 +1,43 @@
-<h1>title</h1>
-<%= @book.title %>
-<h1>body</h1>
-<%= @book.body %>
-<h1>id</h1>
-<%= @book.id %>
-<h1>user_id</h1>
-<%= @book.user_id %>
+<main>
+  <div class="container px-5 px-sm-0">
+    <div class="row">
+      <div class="col-md-3">
+        <%= render 'layouts/sidebar', book: @book, user: @user %>
+      </div>
+      <div class="col-md-8 offset-md-1">
+        <h2>Book detail</h2>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>
+                <%= attachment_image_tag @user, :profile_image, size: "50x50", fallback: "no_image.jpg" %><br>
+                <%= link_to @user.name, user_path(@user.id) %>
+              </td>
+              <td>
+                <%= link_to @book.title, book_path(params[:id]) %>
+              </td>
+              <td>
+                <%= @book.body %>
+              </td>
+              <% if @user.id == current_user.id %>
+                <td>
+                  <%= link_to edit_book_path(@book.id) do %>
+                    <button class="btn btn-success btn-sm">Edit</button>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to book_path(@book.id), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
+                    <button class="btn btn-sm btn-danger">Destroy</button>
+                  <% end%>
+                </td>
+              <% else %>
+                <td></td>
+                <td></td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
