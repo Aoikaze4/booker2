@@ -1,2 +1,6 @@
-<h1>Books#index</h1>
-<p>Find me in app/views/books/index.html.erb</p>
+<main>
+  <p id="notice"></p>
+  <div class="container px-5 px-sm-0">
+    <%= render 'layouts/sidebar', book: @book, user: @user %>
+  </div>
+</main>
