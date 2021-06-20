@@ -9,7 +9,7 @@
     <% end %>
   </h3>
   <ul class="error-table">
-    <% book.errors.full_messages.each do |message| %>
+    <% model.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>
   </ul>
