@@ -1,0 +1,18 @@
+<div class="container px-5 px-sm-0">
+  <div id="error-explanation">
+  <% if model.errors.any? %>
+  <h3 class="error-message">
+    <% if model.errors.count == 1 %>
+      <%= model.errors.count %><span> error prohibited this obj from being saved:</span>
+    <% else %>
+      <%= model.errors.count %><span> errors prohibited this obj from being saved:</span>
+    <% end %>
+  </h3>
+  <ul class="error-table">
+    <% book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+  <% end %>
+  </div>
+</div>

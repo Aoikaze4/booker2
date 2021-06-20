@@ -54,8 +54,10 @@
         </div>
       </nav>
     </header>
-    <%= render 'layouts/notifications' %>
-    <%= yield %>
+    <main>
+      <%= render partial: 'layouts/notifications' %>
+      <%= yield %>
+    </main>
     <footer>
       <div class="container mt-5">
         <div class="row">

@@ -1,43 +1,41 @@
-<main>
-  <div class="container px-5 px-sm-0">
-    <div class="row">
-      <div class="col-md-3">
-        <%= render 'layouts/sidebar', book: @book, user: @user %>
-      </div>
-      <div class="col-md-8 offset-md-1">
-        <h2>Book detail</h2>
-        <table class="table">
-          <tbody>
-            <tr>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'layouts/sidebar', book: @book, user: @user %>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h2>Book detail</h2>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>
+              <%= attachment_image_tag @user, :profile_image, size: "50x50", fallback: "no_image.jpg" %><br>
+              <%= link_to @user.name, user_path(@user.id) %>
+            </td>
+            <td>
+              <%= link_to @book_detail.title, book_path(params[:id]) %>
+            </td>
+            <td>
+              <%= @book_detail.body %>
+            </td>
+            <% if @user.id == current_user.id %>
               <td>
-                <%= attachment_image_tag @user, :profile_image, size: "50x50", fallback: "no_image.jpg" %><br>
-                <%= link_to @user.name, user_path(@user.id) %>
+                <%= link_to edit_book_path(@book_detail.id) do %>
+                  <button class="btn btn-success btn-sm">Edit</button>
+                <% end %>
               </td>
               <td>
-                <%= link_to @book.title, book_path(params[:id]) %>
+                <%= link_to book_path(@book_detail.id), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
+                  <button class="btn btn-sm btn-danger">Destroy</button>
+                <% end%>
               </td>
-              <td>
-                <%= @book.body %>
-              </td>
-              <% if @user.id == current_user.id %>
-                <td>
-                  <%= link_to edit_book_path(@book.id) do %>
-                    <button class="btn btn-success btn-sm">Edit</button>
-                  <% end %>
-                </td>
-                <td>
-                  <%= link_to book_path(@book.id), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
-                    <button class="btn btn-sm btn-danger">Destroy</button>
-                  <% end%>
-                </td>
-              <% else %>
-                <td></td>
-                <td></td>
-              <% end %>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+            <% else %>
+              <td></td>
+              <td></td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-</main>
+</div>
