@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def index
     @users = User.all
     @user = User.find(current_user.id)
@@ -7,6 +8,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    redirect_to user_path(@user.id) unless @user.id == current_user.id
   end
 
   def show
@@ -30,4 +32,5 @@ class UsersController < ApplicationController
       redirect_to user_path(@user.id), notice: 'You have updated user successfully.'
     end
   end
+
 end
